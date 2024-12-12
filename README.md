@@ -27,11 +27,16 @@ project/
 ├── static/                      # CSS 및 javascript 정적 파일       
 │   ├── css/                     # css 디렉토리       
 │   │   ├── style.css            # 기본css       
-│   │   └── style_result.css     # 결과페이지css       
+│   │   └── style_result.css     # 결과페이지css        
 │   ├── js/                      # js 디렉토리       
+│   │   ├── script.js            # 기본css         
+│   │   └── script_re.js         # 결과페이지css      
+├── vector_store/                # 벡터데이터베이스      
+│   ├── chroma.sqlite3           # chroma벡터스토리지 파일
+│   └── ff@@@@@@@-@@-@@-@/       # 임베딩된 벡터 저장 디렉토리  
 ├── rag_temp                     # rag 템플릿 텍스트 저장위치       
-│   ├── template.txt             # rag 템플릿 텍스트파일       
+│   └── template.txt             # rag 템플릿 텍스트파일       
 ├── pdf_data/                    # PDF 문서 디렉토리       
-│   ├── testpdf.pdf              # PDF 파일       
+│   └── testpdf.pdf              # PDF 파일       
 └── requirements.txt             # 필수 패키지 목록 (구현 안되어있음 필요하면 작성해 사용할것.)       
 ```
