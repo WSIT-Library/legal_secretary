@@ -18,6 +18,7 @@ Flask를 활용한 웹 애플리케이션으로, 사용자 친화적인 질문 �
        
        
 ## 프로젝트 구조
+```plaintext
 project/          
 ├── app.py                       # Flask 애플리케이션 메인 파일        
 ├── app.ini                      # uwsgi 웹서버 환경파일. uwsgi 설치후 터미널에 "uwsgi --ini /home/user/Desktop/ML/app.ini" 큰따옴표 안의 명령어로 해당 파일 실행하여 웹서버,시스템 구동.       
@@ -33,3 +34,4 @@ project/
 ├── pdf_data/                    # PDF 문서 디렉토리       
 │   ├── testpdf.pdf              # PDF 파일       
 └── requirements.txt             # 필수 패키지 목록 (구현 안되어있음 필요하면 작성해 사용할것.)       
+```
