@@ -193,9 +193,12 @@ url을 제공받으면 코드에 해당 터널링 포인트의 url을 입력해�
 <br>
 <br>
 <br>
+
 페이지 디자인이 변경되었습니다.
 ![image](https://github.com/user-attachments/assets/c263034f-727b-473e-bdc2-341f9b36380b)
+
 <br>
+
 응답화면입니다.
 ![image](https://github.com/user-attachments/assets/ede5f8de-dbcc-4191-93d7-9d3b055b8919)
 
