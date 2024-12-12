@@ -57,6 +57,76 @@ project/
 리눅스 시스템 구동후 해당 프로젝트 파일 구조를 확인하여 app.py코드상에서 변경합니다.          
          
 코드구조에 문제가 없다면 googlecolab 시스템에 접속하여 gpu모델을 t4로 설정해주고 본인의 ngrok 토큰을 입력하여 url을 제공받습니다.
+
+### 코랩코드
+```plaintext
+!curl https://ollama.ai/install.sh | sh
+
+!echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+!sudo apt-get update && sudo apt-get install -y cuda-drivers
+
+!pip install pyngrok
+#총 설치시간은 5분에서 7분정도 걸리는듯.
+
+
+
+
+
+
+from pyngrok import ngrok
+
+token='본인의 엔그록 토큰'
+#사용자토큰.
+
+ngrok.set_auth_token(token)
+
+
+
+
+
+
+
+
+import os
+import asyncio
+
+# Set LD_LIBRARY_PATH so the system NVIDIA library
+os.environ.update({'LD_LIBRARY_PATH': '/usr/lib64-nvidia'})
+#엔비디아 그래픽카드 라이브러리 업데이트.
+
+async def run_process(cmd):
+  print('>>> starting', *cmd)
+  p = await asyncio.subprocess.create_subprocess_exec(
+      *cmd,
+      stdout=asyncio.subprocess.PIPE,
+      stderr=asyncio.subprocess.PIPE,
+  )
+
+  async def pipe(lines):
+    async for line in lines:
+      print(line.strip().decode('utf-8'))
+
+  await asyncio.gather(
+      pipe(p.stdout),
+      pipe(p.stderr),
+  )
+from IPython.display import clear_output
+clear_output()
+
+
+await asyncio.gather(
+run_process(['ollama', 'serve']),
+# run_process(['ollama', 'pull', 'benedict/linkbricks-llama3.1-korean:8b']),
+run_process(['ngrok', 'http', '--log', 'stderr', '11434', '--host-header="localhost:11434"']),
+run_process(['ollama', 'pull', 'benedict/linkbricks-llama3.1-korean:8b'])
+)
+#ngrok은 11434포트를 사용함으로 해당포트 열기, 그리고 ollama에 필요한 모델 설치.
+```
+
+
+
+
+
          
 url을 제공받으면 코드에 해당 터널링 포인트의 url을 입력해줍니다.(주석으로 url 수정할곳이표시되어있습니다)
          
